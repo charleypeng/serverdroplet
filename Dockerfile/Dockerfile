@@ -8,7 +8,8 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
     && apt-get install -y nodejs \
     && apt remove --autoremove \
     && mkdir /var/www \
-    && chown -R www-data:www-data /var/www
+    && mkdir /var/www/sitepages \
+    && chown -R www-data:www-data /var/www/sitepages
     
     
 EXPOSE 8316
