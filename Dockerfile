@@ -6,7 +6,10 @@ RUN apt update \
     && wget http://soft.vpser.net/lnmp/lnmp1.5.tar.gz -cO lnmp1.5.tar.gz && tar zxf lnmp1.5.tar.gz && cd lnmp1.5 && LNMP_Auto="y" DBSelect="9" DB_Root_Password="cbt1234567" InstallInnodb="y" PHPSelect="8" SelectMalloc="1" ./install.sh lnmp
 
 RUN apt remove --autoremove \
+    && mkdir /var/www \
     && chown -R www-data:www-data /var/www
+    && service mysql start \
+    && service nginx start
     
 EXPOSE 80
 
