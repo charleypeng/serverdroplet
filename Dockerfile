@@ -7,6 +7,7 @@ RUN apt update \
 RUN apt remove --autoremove \
     && chown -R www-data:www-data /var/www
     
+RUN service nginx start   
     
 EXPOSE 80
 
