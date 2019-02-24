@@ -5,7 +5,6 @@ RUN apt update \
     && apt install -y gnupg curl vim-tiny wget mysql-server mysql-client php git nginx
 
 RUN apt remove --autoremove \
-    && mkdir /var/www \
     && chown -R www-data:www-data /var/www
     
     
