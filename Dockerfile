@@ -1,5 +1,7 @@
 FROM debian:9
 LABEL maintainer="Charley Peng" version="1.0" org.lable-schema.url="https://github.com/charleypeng/serverdroplet"
+
+VOLUME /var/www/sitepages
 #Install dependencies
 RUN apt update \
     && apt install -y gnupg curl vim wget git
@@ -16,12 +18,10 @@ RUN cd /tmp \
     && echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.0 main" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list \
     && apt-get update \
     && apt-get install dotnet-sdk-2.2 mongodb-org \
-    && mkdir /var/www \
+    && useradd www-data \
     && mkdir /var/www/sitepages \
     && chown -R www-data:www-data /var/www/sitepages
-        
-EXPOSE 8200
 
-Volume ["/var/www"]
+EXPOSE 8200
 
 WORKDIR /var/www
