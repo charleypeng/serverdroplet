@@ -1,17 +1,25 @@
 FROM debian:9
-LABEL maintainer="charleypeng" version="1.0" org.lable-schema.url="https://github.com/charleypeng/serverdroplet"
+LABEL maintainer="Peng Lei" version="1.0" org.lable-schema.url="https://github.com/charleypeng/serverdroplet"
 #Install dependencies
 RUN apt update \
-    && apt install -y gnupg curl vim-tiny wget mysql-server mysql-client git
+    && apt install -y gnupg curl vim wget git
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-    && apt-get install -y nodejs \
-    && apt remove --autoremove \
+RUN cd /tmp \
+    && wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg \
+    && mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/ \
+    && wget -q https://packages.microsoft.com/config/debian/9/prod.list \
+    && mv prod.list /etc/apt/sources.list.d/microsoft-prod.list \
+    && chown root:root /etc/apt/trusted.gpg.d/microsoft.asc.gpg \
+    && chown root:root /etc/apt/sources.list.d/microsoft-prod.list \
+    && apt-get update \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4 \
+    && echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.0 main" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list \
+    && apt-get update \
+    && apt-get install dotnet-sdk-2.2 mongodb-org \
     && mkdir /var/www \
     && mkdir /var/www/sitepages \
     && chown -R www-data:www-data /var/www/sitepages
-    
-    
-EXPOSE 8316
+        
+EXPOSE 8200
 
 WORKDIR /var/www
