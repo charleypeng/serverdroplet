@@ -17,7 +17,6 @@ RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor 
     && echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.0 main" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list \
     && apt-get update \
     && apt-get install -y dotnet-sdk-2.2 mongodb-org \
-    && useradd www-data \
     && mkdir /var/www/sitepages \
     && chown -R www-data:www-data /var/www/sitepages
 
