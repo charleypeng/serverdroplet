@@ -1,5 +1,5 @@
 FROM debian:9
-LABEL maintainer="Peng Lei" version="1.0" org.lable-schema.url="https://github.com/charleypeng/serverdroplet"
+LABEL maintainer="Charley Peng" version="1.0" org.lable-schema.url="https://github.com/charleypeng/serverdroplet"
 #Install dependencies
 RUN apt update \
     && apt install -y gnupg curl vim wget git
@@ -21,5 +21,7 @@ RUN cd /tmp \
     && chown -R www-data:www-data /var/www/sitepages
         
 EXPOSE 8200
+
+Volume ["/var/www"]
 
 WORKDIR /var/www
