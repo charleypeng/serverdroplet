@@ -4,7 +4,7 @@ LABEL maintainer="Charley Peng" version="1.0" org.lable-schema.url="https://gith
 VOLUME /var/www/sitepages
 #Install dependencies
 RUN apt update \
-    && apt install -y gnupg curl vim wget git apt-transport-https
+    && apt install -y gnupg curl vim wget git apt-transport-https apt-utils
 
 RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg \
     && mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/ \
