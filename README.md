@@ -13,5 +13,5 @@ latest
 
 lnmp
 
-dotnet
+dotnetcore2.2 
 ```
