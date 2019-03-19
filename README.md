@@ -12,4 +12,6 @@ docker run -d -p 80 charleypeng/serverdroplet:latest
 latest
 
 lnmp
+
+dotnet
 ```
